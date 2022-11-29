@@ -1,4 +1,3 @@
-!!! THIS REPOSITORY STAY IN PROGRESS !!!
 
 # Clamav4Mac
 
@@ -77,7 +76,7 @@ launchctl unload -w /Library/LaunchDaemons/com.clamav_tr.plist
 
 ## Authors
 
-* **coldnfire** 
+* cayossarian, forked from coldnfire
 
 ## License
 
