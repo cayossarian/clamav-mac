@@ -1,20 +1,20 @@
 #! /bin/bash
 
-# Maintainer : coldnfire, laboserver@gmail.com
-# Script "Clamscan by Launchd", coldnfire
+# Maintainer : cayossarianb
+# Script "Clamscan by Launchd", coldnfire, cayossarian
 # Dependency : postfix
 
-user=bflood
+user=bfloodbflood
 logfile="/var/log/clamav/clamscan-$(date +'%Y-%m-%d').log";
 email_msg="Malware found !!!"
-email=bill@ipheart.com
-folder=/Users/bflood
-jail=/var/jail
+email=bill@ipheart.combill.flood@me.com
+folder=/Users/bflood/Users/bflood
+jail=/var/jail/var/jail
 mac=$(ifconfig en0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}');
 log_path=/var/log/clamav/
 retention=10
 
-freshclam
+/opt/homebrew/bin/freshclam
 postfix start
 
 for S in ${folder}; do
@@ -24,7 +24,7 @@ for S in ${folder}; do
 	#Log rotate
 	find ${log_path} -mtime +${retention} -type f -delete
 	
-	clamscan -ri "$S" >> "$logfile"
+	/opt/homebrew/bin/clamscan -ri "$S" >> "$logfile"
 
 	# get the value of "Infected lines"
 	MALWARE=$(tail "$logfile" | grep Infected | cut -d " " -f3);

@@ -1,18 +1,18 @@
 #!/bin/bash
 
-# Maintainer : coldnfire, laboserver@gmail.com
-# Script "ClamAV real time", by coldnfire
+# Maintainer : cayossariano
+# Script "ClamAV real time", by coldnfire, cayossarian
 # Dependency : fswatch, postfix
  
 logfile="/var/log/clamav/clamav_tr_$(date +'%Y-%m-%d').log";
 mac=$(ifconfig en0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}');
-folder=/Users/bflood
-user=bflood
-jail=/var/jail
-email=bill@ipheart.com
+folder=/Users/bflood/Users/bflood
+user=bfloodbflood
+jail=/var/jail/var/jail
+email=bill@ipheart.combill.flood@me.com
 
 /opt/homebrew/bin/freshclam
-/usr/local/sbin/clamd
+/opt/homebrew/sbin/clamd
 postfix start
  
 while :

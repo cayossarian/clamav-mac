@@ -1,7 +1,7 @@
 #! /bin/bash
 
-#Maintainer : coldnfire
-#Reporting bug : laboserver@gmail.com
+#Maintainer : 
+#Reporting bug : 
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -17,7 +17,7 @@ SW_USER=$(echo $SW_USER | tr [:upper:] [:lower:]) ;
 if [ "$UID" -eq "$ROOT_UID" ]  # Will the real "root" please stand up?
 then
 	echo -e "🔥 ${RED}You are log in root... It is not what i was expect.${NC}\n"
-	echo -e "🔥 ${RED}Connection with your standart user in progress.${NC}\n"
+	echo -e "🔥 ${RED}Connection with your standard user in progress.${NC}\n"
 	su $SW_USER ./install.sh
 	exit 130
 else

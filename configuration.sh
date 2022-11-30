@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#Maintainer : coldnfire
-#Reporting bug : laboserver@gmail.com
+#Maintainer : 
+#Reporting bug :
 
 # Find username
 SW_USER=$(id -un 501)
@@ -24,7 +24,7 @@ cp freshclam.conf.sample freshclam.conf && cp clamd.conf.sample clamd.conf
 ##########
 
 # Global program configuration
-cd /usr/local/etc/clamav/ 
+cd /opt/homebrew/etc/clamav
 sed -ie 's/Example/#Example/g' clamd.conf
 sed -ie "s/#LogFile \/tmp\/clamd.log/LogFile \/var\/log\/clamav\/clamd.log/g" clamd.conf
 sed -ie 's/#LogFileMaxSize 2M/LogFileMaxSize 2M/g' clamd.conf
@@ -60,6 +60,8 @@ mkdir -p /var/root/.clamav/
 chown 700 /var/root/.clamav/
 
 cd $path
+cp clamav_rt.template clamav_rt.sh && cp clamav_cron.template clamav_cron.sh
+
 sed -ie "s/user=/user=$SW_USER/g" clamav_rt.sh
 sed -ie "s/folder=/folder=\/Users\/$SW_USER/g" clamav_rt.sh
 sed -ie "s/email=/email=$mail/g" clamav_rt.sh
