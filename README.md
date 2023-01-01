@@ -1,18 +1,18 @@
 
-# Clamav4Mac
+# clamav-mac
 
 The Non-Graphical ClamAV Antivirus Solution for Mac OS X
 
-I forked this as a free alternative to the excellent ClamXav. Clamav4Mac sets up real-time directory monitoring and schedules periodic scans. It uses ClamAV as an AntiVirus engine and fswatch to actively monitor directories for new or changed files, which are then sent to clamd for scanning.
+I forked and updated this repository as a free alternative to the excellent ClamXav. clamav-mac sets up real-time directory monitoring and schedules periodic scans. It uses ClamAV as an AntiVirus engine and fswatch to actively monitor directories for new or changed files, which are then sent to clamd for scanning.
 
 
 ### Prerequisites
 
-All prerequies will be automatically installed. I have tested Clamav4Mac on High Sierra & Mojave , but it may also work in other versions of OS X.
+All prerequies will be automatically installed. I have tested clamav-mac on High Sierra & Mojave , but it may also work in other versions of OS X.
 
 ### Virus Scans
 
-Clamav4Mac performs two types of scans:
+clamav-mac performs two types of scans:
 
 When a file is changed or created, it will be scanned immediately. By default, the $HOME and Applications directories are monitored.
 Scheduled scanning: Clamav4Mac will perform recursive scans of directories at scheduled times. By default, the entire $HOME and /Application is scanned once a week.
@@ -21,7 +21,7 @@ In all cases, when a virus is found, it is moved to the quarantine folder and an
 ### Installing
 
 ```
-git clone https://github.com/coldnfire/clamav-mac.git
+git clone https://github.com/cayossarian/clamav-mac.git
 ```
 
 ```
@@ -32,7 +32,7 @@ chmod 700 install.sh configuration.sh
 ./install.sh
 ```
 
-This will bootstrap Clamav4Mac by building the lastest versions of ClamAV and fswatch from brew. It will schedule a full file system scan once a week and update signatures once a day. It also sets up live monitoring for the $HOME and /Applications directories. Each of these things can be configured by modifying script variables.
+This will bootstrap clamav-mac by installing the lastest versions of ClamAV and fswatch from brew. It will schedule a full file system scan once a week and update signatures once a day. It also sets up live monitoring for the $HOME and /Applications directories. Each of these things can be configured by modifying script variables.
 
 By default, the installation directory is ~/clamav-mac.
 
