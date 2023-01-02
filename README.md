@@ -85,7 +85,7 @@ With the root user :
 
 ### Email Notification Setup
 The script provides basic Postfix email configuration but if you need to map from a local machine mailbox address (like somebody@machine.local) to a domain (like somebody@me.com) you'll need to do a bit more configuration. In order to accompolish this external email mapping you'll need to perform the following actions:
-1) Add an additioinal line to the /et/postfix/main.cf script:  
+1) Add an additioinal line to the `/etc/postfix/main.cf` script:  
 	smtp_generic_maps=hash:/etc/postfix/generic 
 2) Edit `/etc/postfix/generic`, adding configuration lines such as (the root line is to handle the cases where cron is sending emails as root and you need to have the FROM address changed so it is accepted by your email server): 
     
@@ -104,12 +104,12 @@ The script provides basic Postfix email configuration but if you need to map fro
 7) Run: 
     `sudo postfix reload`
 
-Test your email configuration by sending an email to root and see if it is forwarded to your own external email by using a line like:
-Monitor the postfix log: 
+Test your email configuration by sending an email to root and see if it is forwarded to your own external email:<br/>
+In one terminal window Monitor the postfix log: 
 
     log stream --predicate  '(process == "smtpd") || (process == "smtp")' --info
 
-Send an email:
+In a second terminal Send an email:
 
 	echo "Testing my new postfix setup" | mail -s "Test email from `hostname`" root
 
