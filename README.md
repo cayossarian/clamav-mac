@@ -109,14 +109,14 @@ The script provides basic Postfix email configuration but if you need to map fro
     ```sudo postfix reload```
 
 Test your email configuration by sending an email to root and see if it is forwarded to your own external email by using a line like:
-	Monitor the postfix log: 
+Monitor the postfix log: 
 ```
 		log stream --predicate  '(process == "smtpd") || (process == "smtp")' --info
-```
-	Send an email:
+
+Send an email:
 ```
 		echo "Testing my new postfix setup" | mail -s "Test email from `hostname`" root
-```
+
 
 Watch for email authentication errors, etc.  If you have an authentication error check your email name and password in /etc/postfix/sasl_passwd.
 Remember if you change the passwords in sasl_passwd, rerun the command
