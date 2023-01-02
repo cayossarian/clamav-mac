@@ -66,7 +66,7 @@ sed -ie "s/user=/user=$SW_USER/g" clamav_rt.sh
 sed -ie "s/folder=/folder=\/Users/g" clamav_rt.sh
 sed -ie "s/email=/email=$mail/g" clamav_rt.sh
 sed -ie "s/jail=/jail=\/var\/jail/g" clamav_rt.sh
-cp -f clamav_rt.sh /var/root/.clamav/
+mv -f clamav_rt.sh /var/root/.clamav/
 chmod 700 clamav_rt.sh
 ##########
 
@@ -75,7 +75,7 @@ sed -ie "s/user=/user=$SW_USER/g" clamav_cron.sh
 sed -ie "s/folder=/folder=\/Users/g" clamav_cron.sh
 sed -ie "s/email=/email=$mail/g" clamav_cron.sh
 sed -ie "s/jail=/jail=\/var\/jail/g" clamav_cron.sh
-cp -f clamav_cron.sh /var/root/.clamav/
+mv -f clamav_cron.sh /var/root/.clamav/
 chmod 700 clamav_cron.sh
 ##########
 

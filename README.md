@@ -71,7 +71,7 @@ Contain the script launch by launchd: `/var/root/.clamav/`<br/>
 
 ### Email Notification Setup
 The script provides basic Postfix email configuration but if you need to map from a local machine mailbox address (like somebody@machine.local) to a domain (like somebody@me.com) you'll need to do a bit more configuration. In order to accompolish this external email mapping you'll need to perform the following actions:
-1) Add an additioinal line to `/etc/postfix/man.cf`<br/>  
+1) Ensure this line is present in `/etc/postfix/main.cf`<br/>  
 	smtp_generic_maps=hash:/etc/postfix/generic 
 2) Edit `/etc/postfix/generic`, adding configuration lines (rewrites the FROM header so emails appear to be from the correct user@domain address):
     
@@ -100,14 +100,14 @@ In a second terminal Send an email:
 	echo "Testing my new postfix setup" | mail -s "Test email from `hostname`" root
 
 
-Watch for email authentication errors, etc.  If you have an authentication error check your email name and password in /etc/postfix/sasl_passwd.
-Remember if you change the passwords in sasl_passwd, rerun the command
+Watch for email authentication errors or other problems in the log output.  If you have an authentication error check your email name and applicastion specific password in /etc/postfix/sasl_passwd.
+Remember if you change the passwords in sasl_passwd, rerun the command:
 
     sudo postmap /etc/postfix/sasl_passwd
 
 
-### Final Realtime test
-Within a ~/Downloads directory
+### Final Realtime Antivirus Test
+Create a test file Within a ~/Downloads directory
 
     echo 'X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*' > clamav-testfile
 
