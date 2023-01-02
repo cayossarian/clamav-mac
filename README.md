@@ -35,25 +35,25 @@ chmod 700 install.sh configuration.sh
 ./install.sh
 ```
 ### Post Install
-In order for clamv to scan your files it needs full disk access which is set in macos settings->Privacy and Sercurity->Full Disk Access.  Opem the settings and drag clamdscan and clamscan from a finder window into the dialog and enable their access by toggling them on.  Use a terminal to find them easily.
+In order for clamv to scan your files it needs full disk access which is set in macos settings->Privacy and Sercurity->Full Disk Access.  Open the settings and drag clamdscan and clamscan from a finder window into the dialog and enable their access by toggling them on.  Use a terminal to find their locations easily.
 ```
 which clamdscan
 which clamscan
 ```
 ### Results 
-This configuration  will bootstrap clamav-mac by installing the lastest versions of ClamAV and fswatch from brew. It will schedule a full file system scan once a week and update signatures once a day. It also sets up live monitoring for the $HOME and /Applications directories. Each of these things can be configured by modifying script variables.
+This configuration  will bootstrap clamav-mac by installing the lastest versions of ClamAV and fswatch from brew. It will schedule a full file system scan once a week and update signatures once a day. It also sets up live monitoring for the $HOME directories. Each of these things can be configured by modifying script variables.
 
 By default, the installation directory is ~/clamav-mac.
 
 ### Directory
 
-Contain all logs of the program
+Contains all logs of the program
 
 ```
 /var/log/clamav
 ```
 
-Contain all configuration files
+Contains all configuration files
 
 ```
 Cron files: /var/root/.clamav/
@@ -86,10 +86,10 @@ launchctl unload -w /Library/LaunchDaemons/com.clamav_cron.plist
 launchctl unload -w /Library/LaunchDaemons/com.clamav_tr.plist
 ```
 ### Email Notification Setup
-The script provides basic Postfix email configuration but if you need to map from a local mailbox address (like somebody@machine.local) to a domain (like somebody@me.com) you'll need to do a bit more configuration. In order to accompolish this external email mapping you'll need to perform the following actions:
+The script provides basic Postfix email configuration but if you need to map from a local machine mailbox address (like somebody@machine.local) to a domain (like somebody@me.com) you'll need to do a bit more configuration. In order to accompolish this external email mapping you'll need to perform the following actions:
 1) Add an additioinal line to the /et/postfix/main.cf script:  
 	smtp_generic_maps=hash:/etc/postfix/generic 
-2) Edit /etc/postfix/generic, adding configuration lines such as (the root line is to handle the cases where cron is sending as root and you need to have the FROM address changed):  
+2) Edit /etc/postfix/generic, adding configuration lines such as (the root line is to handle the cases where cron is sending emails as root and you need to have the FROM address changed so it is accepted by your email server):  
 ```
 	somebody@machine.local somebodyd@me.com 
 	root@machine.local somebody@me.com 
@@ -115,6 +115,17 @@ Test your email configuration by sending an email to root and see if it is forwa
 ```
 
 Watch for email authentication errors, etc.  If you have an authentication error check your email name and password in /etc/postfix/sasl_passwd
+Remember if you change the passwords in sasl_passwd, rerun the command
+```
+sudo postmap /etc/postfix/sasl_passwd
+```
+
+### Final Realtime test
+Within a ~/Downloads directory
+```
+echo 'X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*' > clamav-testfile
+```
+The file should be moved to /var/jail and you should receive an email regarding the test "virus"
 
 ### Authors
 
