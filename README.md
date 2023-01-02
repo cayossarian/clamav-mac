@@ -70,10 +70,10 @@ Contain the script launch by launchd: `/var/root/.clamav/`<br/>
     sudo launchctl unload -w /Library/LaunchDaemons/com.clamav_tr.plist
 
 ### Email Notification Setup
-The script provides basic Postfix email configuration but if you need to map from a local machine mailbox address (like somebody@machine.local) to a domain (like somebody@me.com) you'll need to do a bit more configuration. In order to accompolish this external email mapping you'll need to perform the following actions:
-1) Ensure this line is present in `/etc/postfix/main.cf`<br/>  
+The script provides basic Postfix email configuration that works for local machine mailbox addresses but if you need to map from a local machine mailbox address (like somebody@machine.local) to a domain (like somebody@me.com) you'll need to do a bit more configuration:
+1) Ensure this generic mapping line is present in `/etc/postfix/main.cf`<br/>  
 	smtp_generic_maps=hash:/etc/postfix/generic 
-2) Edit `/etc/postfix/generic`, adding configuration lines (rewrites the FROM header so emails appear to be from the correct user@domain address):
+2) Edit `/etc/postfix/generic`, adding mapping lines similar to the examples the email authentication is expecting for the external domain user, (rewrites the FROM header so emails appear to be from the correct user@domain address):
     
     `somebody@machine.local somebodyd@me.com` <br/>
 	`root@machine.local somebody@me.com`<br/>
