@@ -95,18 +95,18 @@ The script provides basic Postfix email configuration but if you need to map fro
 	root@machine.local somebody@me.com 
 ```
 3) Run: 
-```sudo postmap /etc/postfix/generic```
+    ```sudo postmap /etc/postfix/generic```
 4) Run: 
-```sudo postfix reload```
+    ```sudo postfix reload```
 5) Edit /etc/aliases 
 ```
 	# Put your local aliases here.
 	root: somebody@me.com
 ```
 6) Run: 
-```sudo newaliases ```
+    ```sudo newaliases```
 7) Run: 
-```sudo postfix reload```
+    ```sudo postfix reload```
 
 Test your email configuration by sending an email to root and see if it is forwarded to your own external email by using a line like:
 	Monitor the postfix log: 
