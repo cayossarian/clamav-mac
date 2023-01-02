@@ -95,7 +95,7 @@ The script provides basic Postfix email configuration but if you need to map fro
 4) Run: 
     sudo postfix reload
 5) Edit /etc/aliases 
-	# Put your local aliases here.
+	"# Put your local aliases here."
 	root: somebody@me.com
 6) Run: 
     sudo newaliases
