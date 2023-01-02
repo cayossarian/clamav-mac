@@ -114,7 +114,7 @@ Test your email configuration by sending an email to root and see if it is forwa
 		echo "Testing my new postfix setup" | mail -s "Test email from `hostname`" root
 ```
 
-Watch for email authentication errors, etc.  If you have an authentication error check your email name and password in /etc/postfix/sasl_passwd
+Watch for email authentication errors, etc.  If you have an authentication error check your email name and password in /etc/postfix/sasl_passwd.
 Remember if you change the passwords in sasl_passwd, rerun the command
 ```
 sudo postmap /etc/postfix/sasl_passwd
