@@ -21,7 +21,7 @@ Scheduled scanning: Clamav4Mac will perform recursive scans of directories at sc
 In all cases, when a virus is found, it is moved to the quarantine folder and an email is send to the administrator.
 
 ### Installing
-Note the remmoves previous repository configuration files including those for Clamv.  If you need to retain any changes in those files, make copies before running the script.
+Important Note - the scripts overwrites previous repository configuration files including those for Clamv.  If you need to retain any changes in those files, make copies before running the script.
 
 ```
     git clone https://github.com/cayossarian/clamav-mac.git
