@@ -55,24 +55,24 @@ Contains all logs of the program
 
 Contains all configuration files
 
-```
+
 Cron files: /var/root/.clamav/
 Launch Deamon files: /Library/LaunchDaemons (plists)
 Clamav configuration files: /opt/homebrew/etc/clamav
 
-```
+
 
 Contains all the malware
 
-```
+
 /var/jail
-```
+
 
 Contain the script launch by launchd
 
-```
+
 /var/root/.clamav/
-```
+
 
 ### Deactivation
 
