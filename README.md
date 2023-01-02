@@ -10,7 +10,7 @@ This work is provided as is without any expressed or implied warranties.  Use th
 
 ### Prerequisites
 
-All prerequisites  will be automatically installedi with Brew. I have tested clamav-mac on Mojave and Ventura ,but it may also work in other versions of OS X.
+All prerequisites  will be automatically installed with Brew. I have tested clamav-mac on Mojave and Ventura ,but it may also work in other versions of OS X.
 
 ### Virus Scans
 
