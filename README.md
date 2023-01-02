@@ -84,21 +84,29 @@ The script provides basic Postfix email configuration but if you need to map fro
 1) Add an additioinal line to the /et/postfix/main.cf script:  
 	smtp_generic_maps=hash:/etc/postfix/generic 
 2) Edit /etc/postfix/generic, adding configuration lines such as (the root line is to handle the cases where cron is sending as root and you need to have the FROM address changed):  
+```
 	somebody@machine.local somebodyd@me.com 
 	root@machine.local somebody@me.com 
+```
 3) Run: sudo postmap /etc/postfix/generic
 4) Run: sudo postfix reload
 5) Edit /etc/aliases 
-	"# Put your local aliases here.
+```
+	# Put your local aliases here.
 	root: somebody@me.com
+```
 6) Run: sudo newaliases 
 7) Run: sudo postfix reload
 
 Test your email configuration by sending an email to root and see if it is forwarded to your own external email by using a line like:
 	Monitor the postfix log: 
+```
 		log stream --predicate  '(process == "smtpd") || (process == "smtp")' --info
+```
 	Send an email:
+```
 		echo "Testing my new postfix setup" | mail -s "Test email from `hostname`" root
+```
 
 Watch for email authentication errors, etc.  If you have an authentication error check your email name and password in /etc/postfix/sasl_passwd
 
