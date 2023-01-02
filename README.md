@@ -91,9 +91,9 @@ The script provides basic Postfix email configuration but if you need to map fro
 	somebody@machine.local somebodyd@me.com 
 	root@machine.local somebody@me.com 
 3) Run:<br/>
-    sudo postmap /etc/postfix/generic
+    `sudo postmap /etc/postfix/generic`
 4) Run:<br/>
-    sudo postfix reload
+    `sudo postfix reload`
 5) Edit /etc/aliases<br/> 
     `# Put your local aliases here.`<br/>
     `root: somebody@me.com`<br/>
