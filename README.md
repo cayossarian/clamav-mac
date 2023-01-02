@@ -89,8 +89,8 @@ The script provides basic Postfix email configuration but if you need to map fro
 	smtp_generic_maps=hash:/etc/postfix/generic 
 2) Edit `/etc/postfix/generic`, adding configuration lines such as (the root line is to handle the cases where cron is sending emails as root and you need to have the FROM address changed so it is accepted by your email server): 
     
-    somebody@machine.local somebodyd@me.com 
-	root@machine.local somebody@me.com 
+    somebody@machine.local somebodyd@me.com <br/>
+	root@machine.local somebody@me.com <br/>
 
 3) Run:<br/>
     `sudo postmap /etc/postfix/generic`
