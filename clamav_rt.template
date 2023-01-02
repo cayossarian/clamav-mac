@@ -7,7 +7,6 @@
 logfile="/var/log/clamav/clamav_tr_$(date +'%Y-%m-%d').log";
 mac=$(ifconfig en0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}');
 folder=
-user=
 jail=
 email=
 
@@ -23,7 +22,7 @@ while read file; do
 	/opt/homebrew/bin/clamdscan -m -v --fdpass "$file" --move=$jail
         if [ "$?" == "1" ]; then
 		echo -e "Malware found!!!" "File '$file' file has been moved to jail !" >> $logfile
-		echo -e "Malware found" "File '$file' has been moved to jail, the user is $user with mac address $mac the result of the scan is in $logfile" | mail -s "$user $mac" $email
+		echo -e "Malware found" "File '$file' has been moved to jail, with mac address $mac the result of the scan is in $logfile" | mail -s "$mac" $email
         fi
 	done
 done

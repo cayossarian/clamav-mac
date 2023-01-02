@@ -4,7 +4,6 @@
 # Script "Clamscan by Launchd", coldnfire, cayossarian
 # Dependency : postfix
 
-user=
 logfile="/var/log/clamav/clamscan-$(date +'%Y-%m-%d').log";
 email_msg="Malware found !!!"
 email=
@@ -32,7 +31,7 @@ for S in ${folder}; do
 	# Send an email if a some malware was found
 	if [ "$MALWARE" -ne "0" ]; then
 		
-		echo "Scanning on $folder for total size $DIRSIZE, user is $user with mac address $mac, $email_msg the result of scan is in $logfile" | mail -s "$user $mac" "$email"
+		echo "Scanning on $folder for total size $DIRSIZE, mac address $mac, $email_msg the result of scan is in $logfile" | mail -s "$mac" "$email"
 	fi
 done
 
