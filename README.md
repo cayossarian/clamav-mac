@@ -1,4 +1,4 @@
-/
+
 # clamav-mac
 
 The Non-Graphical ClamAV Antivirus Solution for Mac OS X
