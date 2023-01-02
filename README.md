@@ -40,8 +40,8 @@ In order for clamv to scan your files it needs full disk access which is set in 
 which clamdscan
 which clamscan
 ```
-
-This will bootstrap clamav-mac by installing the lastest versions of ClamAV and fswatch from brew. It will schedule a full file system scan once a week and update signatures once a day. It also sets up live monitoring for the $HOME and /Applications directories. Each of these things can be configured by modifying script variables.
+### Results 
+This configuration  will bootstrap clamav-mac by installing the lastest versions of ClamAV and fswatch from brew. It will schedule a full file system scan once a week and update signatures once a day. It also sets up live monitoring for the $HOME and /Applications directories. Each of these things can be configured by modifying script variables.
 
 By default, the installation directory is ~/clamav-mac.
 
