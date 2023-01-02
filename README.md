@@ -3,14 +3,14 @@
 
 The Non-Graphical ClamAV Antivirus Solution for Mac OS X
 
-I forked and updated this repository as a free alternative to the excellent ClamXav. clamav-mac sets up real-time directory monitoring and schedules periodic scans. The scripts use ClamAV as an AntiVirus engine and fswatch to actively monitor directories for new or changed files, which are then sent to clamd for scanning.
+I forked and updated this repository for the most recent Brew downloads as a free alternative to ClamXav. clamav-mac sets up real-time directory monitoring and schedules periodic scans. The scripts use ClamAV as an AntiVirus engine and fswatch to actively monitor directories for new or changed files, which are then sent to clamd for scanning.
 
 ### Disclaimer
-This work is provided as is without any warranties.  Use this software at your own risk only after reading and understanding the effects of the configuration scripts.
+This work is provided as is without any expressed or implied warranties.  Use this software at your own risk only after reading and understanding the effects of the configuration scripts.
 
 ### Prerequisites
 
-All prerequies will be automatically installedi with Brew. I have tested clamav-mac on Mojave and Ventura ,but it may also work in other versions of OS X.
+All prerequisites  will be automatically installedi with Brew. I have tested clamav-mac on Mojave and Ventura ,but it may also work in other versions of OS X.
 
 ### Virus Scans
 
