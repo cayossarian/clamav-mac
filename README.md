@@ -1,4 +1,4 @@
-
+/
 # clamav-mac
 
 The Non-Graphical ClamAV Antivirus Solution for Mac OS X
@@ -87,35 +87,35 @@ With the root user :
 The script provides basic Postfix email configuration but if you need to map from a local machine mailbox address (like somebody@machine.local) to a domain (like somebody@me.com) you'll need to do a bit more configuration. In order to accompolish this external email mapping you'll need to perform the following actions:
 1) Add an additioinal line to the /et/postfix/main.cf script:  
 	smtp_generic_maps=hash:/etc/postfix/generic 
-2) Edit /etc/postfix/generic, adding configuration lines such as (the root line is to handle the cases where cron is sending emails as root and you need to have the FROM address changed so it is accepted by your email server):  ``
+2) Edit `/etc/postfix/generic`, adding configuration lines such as (the root line is to handle the cases where cron is sending emails as root and you need to have the FROM address changed so it is accepted by your email server):  ``
 	somebody@machine.local somebodyd@me.com 
 	root@machine.local somebody@me.com 
-3) Run: 
+3) Run:<br/>
     sudo postmap /etc/postfix/generic
-4) Run: 
+4) Run:<br/>
     sudo postfix reload
-5) Edit /etc/aliases 
+5) Edit /etc/aliases<br/> 
     `# Put your local aliases here.`<br/>
     `root: somebody@me.com`<br/>
 6) Run: 
-    sudo newaliases
+    `sudo newaliases`
 7) Run: 
-    sudo postfix reload
+    `sudo postfix reload`
 
 Test your email configuration by sending an email to root and see if it is forwarded to your own external email by using a line like:
 Monitor the postfix log: 
 
-		log stream --predicate  '(process == "smtpd") || (process == "smtp")' --info
+    `log stream --predicate  '(process == "smtpd") || (process == "smtp")' --info`
 
 Send an email:
 
-		echo "Testing my new postfix setup" | mail -s "Test email from `hostname`" root
+	`echo "Testing my new postfix setup" | mail -s "Test email from `hostname`" root`
 
 
 Watch for email authentication errors, etc.  If you have an authentication error check your email name and password in /etc/postfix/sasl_passwd.
 Remember if you change the passwords in sasl_passwd, rerun the command
 
-    sudo postmap /etc/postfix/sasl_passwd
+    `sudo postmap /etc/postfix/sasl_passwd`
 
 
 ### Final Realtime test
