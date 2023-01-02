@@ -100,7 +100,7 @@ In a second terminal Send an email:
 	echo "Testing my new postfix setup" | mail -s "Test email from `hostname`" root
 
 
-Watch for email authentication errors or other problems in the log output.  If you have an authentication error check your email name and applicastion specific password in /etc/postfix/sasl_passwd.
+Watch for email authentication errors or other problems in the log output.  If you have an authentication error check your email name and application specific password in /etc/postfix/sasl_passwd.
 Remember if you change the passwords in sasl_passwd, rerun the command:
 
     sudo postmap /etc/postfix/sasl_passwd
