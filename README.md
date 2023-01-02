@@ -71,23 +71,23 @@ Contain the script launch by launchd: `/var/root/.clamav/`<br/>
 
 ### Email Notification Setup
 The script provides basic Postfix email configuration that works for local machine mailbox addresses but if you need to map from a local machine mailbox address (like somebody@machine.local) to a domain (like somebody@me.com) you'll need to do a bit more configuration:
-1) Ensure this generic mapping line is present in `/etc/postfix/main.cf`<br/>  
+1. Ensure this generic mapping line is present in `/etc/postfix/main.cf`<br/>  
 	smtp_generic_maps=hash:/etc/postfix/generic 
-2) Edit `/etc/postfix/generic`, adding mapping lines similar to the examples the email authentication is expecting for the external domain user, (rewrites the FROM header so emails appear to be from the correct user@domain address):
+2. Edit `/etc/postfix/generic`, adding mapping lines similar to the examples the email authentication is expecting for the external domain user, (rewrites the FROM header so emails appear to be from the correct user@domain address):
     
     `somebody@machine.local somebodyd@me.com` <br/>
 	`root@machine.local somebody@me.com`<br/>
 
-3) Run:<br/>
+3. Run:<br/>
     `sudo postmap /etc/postfix/generic`
-4) Run:<br/>
+4. Run:<br/>
     `sudo postfix reload`
-5) Edit /etc/aliases<br/> 
+5. Edit /etc/aliases<br/> 
     `# Put your local aliases here.`<br/>
     `root: somebody@me.com`<br/>
-6) Run: 
+6. Run: 
     `sudo newaliases`
-7) Run: 
+7. Run: 
     `sudo postfix reload`
 
 Test your email configuration by sending an email to root and see if it is forwarded to your own external email:<br/>
