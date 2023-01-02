@@ -20,7 +20,7 @@ chmod 700 /var/jail/
 cd /var/lib/clamav/ && touch whitelist.ign2
 cd /var/log/clamav/ && touch jail.log
 cd /opt/homebrew/etc/clamav
-cp freshclam.conf.sample freshclam.conf && cp clamd.conf.sample clamd.conf
+cp -f freshclam.conf.sample freshclam.conf && cp -f clamd.conf.sample clamd.conf
 ##########
 
 # Global program configuration
@@ -60,22 +60,22 @@ mkdir -p /var/root/.clamav/
 chown 700 /var/root/.clamav/
 
 cd $path
-cp clamav_rt.template clamav_rt.sh && cp clamav_cron.template clamav_cron.sh
+cp -f clamav_rt.template clamav_rt.sh && cp -f clamav_cron.template clamav_cron.sh
 
 sed -ie "s/user=/user=$SW_USER/g" clamav_rt.sh
-sed -ie "s/folder=/folder=\/Users\/$SW_USER/g" clamav_rt.sh
+sed -ie "s/folder=/folder=\/Users/g" clamav_rt.sh
 sed -ie "s/email=/email=$mail/g" clamav_rt.sh
 sed -ie "s/jail=/jail=\/var\/jail/g" clamav_rt.sh
-cp clamav_rt.sh /var/root/.clamav/
+cp -f clamav_rt.sh /var/root/.clamav/
 chmod 700 clamav_rt.sh
 ##########
 
 # Configuration clamav_cron.sh
 sed -ie "s/user=/user=$SW_USER/g" clamav_cron.sh
-sed -ie "s/folder=/folder=\/Users\/$SW_USER/g" clamav_cron.sh
+sed -ie "s/folder=/folder=\/Users/g" clamav_cron.sh
 sed -ie "s/email=/email=$mail/g" clamav_cron.sh
 sed -ie "s/jail=/jail=\/var\/jail/g" clamav_cron.sh
-cp clamav_cron.sh /var/root/.clamav/
+cp -f clamav_cron.sh /var/root/.clamav/
 chmod 700 clamav_cron.sh
 ##########
 
@@ -98,9 +98,10 @@ tls_random_source="tls_random_source=dev:/dev/urandom"
 smtp_sasl_security_options="smtp_sasl_security_options=noanonymous"
 smtp_always_send_ehlo="smtp_always_send_ehlo=yes"
 smtp_sasl_mechanism_filter="smtp_sasl_mechanism_filter=plain"
+smtp_generic-"smtp_generic_maps=hash:/etc/postfix/generic"
 sasl_password="$relayhost $mail:$sasl_passwd"
 
-for i in $relayhost $smtp_sasl_auth_enable $smtp_sasl_password_maps $smtp_use_tls $smtp_tls_security_level $tls_random_source $smtp_sasl_security_options $smtp_always_send_ehlo $smtp_sasl_mechanism_filter 
+for i in $relayhost $smtp_sasl_auth_enable $smtp_sasl_password_maps $smtp_use_tls $smtp_tls_security_level $tls_random_source $smtp_sasl_security_options $smtp_always_send_ehlo $smtp_sasl_mechanism_filter $smtp_generic
 do
    echo "$i" >> main.cf
 done
@@ -113,8 +114,8 @@ postmap /etc/postfix/sasl_passwd
 
 #Configuration Daemon
 cd $path
-cp com.clamav_tr.plist /Library/LaunchDaemons/
-cp com.clamav_cron.plist /Library/LaunchDaemons/
+cp -f com.clamav_tr.plist /Library/LaunchDaemons/
+cp -f com.clamav_cron.plist /Library/LaunchDaemons/
 chmod 644 com.clamav_tr.plist
 chmod 644 com.clamav_cron.plist
 
