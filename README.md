@@ -17,7 +17,7 @@ All prerequisites  will be automatically installed with Brew. I have tested clam
 clamav-mac performs two types of scans:
 
 When a file is changed or created, it will be scanned immediately. By default, the /Users directories are monitored.
-Scheduled scanning: Clamav4Mac will perform recursive scans of directories at scheduled times. By default, the entire /Users direectoriesn are scanned once a week.
+Scheduled scanning: clamav-ma will perform recursive scans of directories at scheduled times. By default, the entire /Users direectoriesn are scanned once a week.
 In all cases, when a virus is found, it is moved to the quarantine folder and an email is send to the administrator.
 
 ### Installing
