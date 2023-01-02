@@ -21,7 +21,7 @@ Scheduled scanning: clamav-ma will perform recursive scans of directories at sch
 In all cases, when a virus is found, it is moved to the quarantine folder and an email is send to the administrator.
 
 ### Installing
-Important Note - the scripts overwrites previous repository configuration files including those for Clamv.  If you need to retain any changes in those files, make copies before running the script.
+Important Note - the scripts overwrite previous repository configuration files including those for Clamv.  If you need to retain any changes in those files, make copies before running the script.
 
 ```
     git clone https://github.com/cayossarian/clamav-mac.git
@@ -32,12 +32,13 @@ Important Note - the scripts overwrites previous repository configuration files 
 ```
 
 ```
-./install.sh
+    ./install.sh
 ```
 ### Post Install
 In order for clamv to scan your files it needs full disk access which is set in macos settings->Privacy and Sercurity->Full Disk Access.  Open the settings and drag clamdscan and clamscan from a finder window into the dialog and enable their access by toggling them on.  Use a terminal to find their locations easily.
 
     which clamdscan
+
     which clamscan
 
 ### Results 
@@ -47,47 +48,32 @@ By default, the installation directory is ~/clamav-mac.
 
 ### Directory
 
-Contains all logs of the program
+Contains all logs of the program: `/var/log/clamav`<br/>
 
-```
-/var/log/clamav
-```
-
-Contains all configuration files
+Contains all configuration files:
 
 
-Cron files: /var/root/.clamav/
-Launch Deamon files: /Library/LaunchDaemons (plists)
-Clamav configuration files: /opt/homebrew/etc/clamav
+    Cron files: `/var/root/.clamav/`<br/>
+    Launch Deamon files: `/Library/LaunchDaemons (plists)`<br/>
+    Clamav configuration files: `/opt/homebrew/etc/clamav`
 
 
-
-Contains all the malware
-
-
-/var/jail
+Contains all the malware: `/var/jail`<br/>
 
 
-Contain the script launch by launchd
-
-
-/var/root/.clamav/
-
+Contain the script launch by launchd: `/var/root/.clamav/`<br/>
 
 ### Deactivation
 
-With the root user :
+    sudo launchctl unload -w /Library/LaunchDaemons/com.clamav_cron.plist
 
-
-    launchctl unload -w /Library/LaunchDaemons/com.clamav_cron.plist
-
-    launchctl unload -w /Library/LaunchDaemons/com.clamav_tr.plist
+    sudo launchctl unload -w /Library/LaunchDaemons/com.clamav_tr.plist
 
 ### Email Notification Setup
 The script provides basic Postfix email configuration but if you need to map from a local machine mailbox address (like somebody@machine.local) to a domain (like somebody@me.com) you'll need to do a bit more configuration. In order to accompolish this external email mapping you'll need to perform the following actions:
-1) Add an additioinal line to the `/etc/postfix/main.cf` script:  
+1) Add an additioinal line to `/etc/postfix/man.cf`<br/>  
 	smtp_generic_maps=hash:/etc/postfix/generic 
-2) Edit `/etc/postfix/generic`, adding configuration lines such as (the root line is to handle the cases where cron is sending emails as root and you need to have the FROM address changed so it is accepted by your email server): 
+2) Edit `/etc/postfix/generic`, adding configuration lines (rewrites the FROM header so emails appear to be from the correct user@domain address):
     
     `somebody@machine.local somebodyd@me.com` <br/>
 	`root@machine.local somebody@me.com`<br/>
