@@ -34,6 +34,12 @@ chmod 700 install.sh configuration.sh
 ```
 ./install.sh
 ```
+### Post Install
+In order for clamv to scan your files it needs full disk access which is set in macos settings->Privacy and Sercurity->Full Disk Access.  Opem the settings and drag clamdscan and clamscan from a finder window into the dialog and enable their access by toggling them on.  Use a terminal to find them easily.
+```
+which clamdscan
+which clamscan
+```
 
 This will bootstrap clamav-mac by installing the lastest versions of ClamAV and fswatch from brew. It will schedule a full file system scan once a week and update signatures once a day. It also sets up live monitoring for the $HOME and /Applications directories. Each of these things can be configured by modifying script variables.
 
